@@ -6,11 +6,20 @@ import Amazon from "../../img/amazon.png";
 import Shopify from "../../img/Shopify.png";
 import Facebook from "../../img/Facebook.png";
 
+import { themeContext } from "../../Context";
+import { useContext } from "react"
+
+import { motion } from "framer-motion";
 function Work() {
+  const transition = { duration: 1, type: "spring" };
+
+  const theme = useContext(themeContext)
+  const darkMode = theme.state.darkMode;
+
   return (
     <div className="works">
       <div className="awesome">
-        <span>Works for All these</span>
+        <span style={{color: darkMode? 'white': ''}}>Works for All these</span>
         <span>Brands & Clients</span>
         <span>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
@@ -27,7 +36,12 @@ function Work() {
 
       {/* RIGHT SIDE */}
       <div className="w-right">
-        <div className="w-mainCircle">
+        <motion.div 
+        initial={{rotate: 45}}
+        whileInView={{rotate: 0}}
+        viewport={{margin: '-40px'}}
+        transition={{dutation: 3.5, type: 'spring'}}
+        className="w-mainCircle">
           <div className="w-secCircle">
             <img src={Upwork} alt="" />
           </div>
@@ -43,7 +57,7 @@ function Work() {
           <div className="w-secCircle">
             <img src={Facebook} alt="" />
           </div>
-        </div>
+        </motion.div>
 
         {/* BACKGROUND CIRCLE */}
         <div className="w-backCircle blueCircle"></div>
